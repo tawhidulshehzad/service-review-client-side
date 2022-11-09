@@ -1,19 +1,35 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import { MDBBtn } from "mdb-react-ui-kit";
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo1 from "../../../assets/food-bar.png";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { providerLogin } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
   const menuItems = (
     <>
       <Link className=" fw-semibold text-decoration-none text-dark" to="/">
         Home
       </Link>
-      <Link className=" fw-semibold text-decoration-none text-dark ms-3" to="/login">
+      <Link
+        className=" fw-semibold text-decoration-none text-dark ms-3"
+        to="/login"
+      >
         Login
       </Link>
-      
     </>
   );
 
@@ -39,8 +55,8 @@ const Header = () => {
               Dank memes
             </Nav.Link>
           </Nav>
-          <MDBBtn outline color="success">
-            Success
+          <MDBBtn onClick={handleGoogleSignIn} outline color="success">
+            Login with Google
           </MDBBtn>
         </Navbar.Collapse>
       </Container>
