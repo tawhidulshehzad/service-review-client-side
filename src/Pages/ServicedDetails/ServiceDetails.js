@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import Reviews from "../Reviews/Reviews";
 
 const ServiceDetails = () => {
   const { title, _id, img, description, price } = useLoaderData();
@@ -18,10 +19,12 @@ const ServiceDetails = () => {
 
     const reviews = {
       service: _id,
+      serviceName: title,
       name,
       url,
       email,
       message,
+      price,
     };
 
     fetch("http://localhost:5000/reviews", {
@@ -95,6 +98,7 @@ const ServiceDetails = () => {
           </form>
         </div>
       </div>
+      <Reviews></Reviews>
     </div>
   );
 };
