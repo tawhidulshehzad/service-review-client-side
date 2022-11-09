@@ -1,8 +1,9 @@
 import { MDBBadge, MDBBtn } from "mdb-react-ui-kit";
 import React from "react";
 
-const ReviewRow = ({ review }) => {
-  const { name, email, url, message, serviceName, price } = review;
+const ReviewRow = ({ review, handleDelete }) => {
+  const { _id, name, email, url, message, serviceName, price } = review;
+
   return (
     <tr>
       <td>
@@ -29,7 +30,7 @@ const ReviewRow = ({ review }) => {
       </td>
       <td>{price}</td>
       <td>
-        <MDBBtn rounded size="sm">
+        <MDBBtn onClick={() => handleDelete(_id)} rounded size="sm">
           x
         </MDBBtn>
       </td>

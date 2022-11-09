@@ -12,13 +12,32 @@ import ReviewRow from "./ReviewRow";
 const Reviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
 
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`)
       .then((response) => response.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
+
+  // delete function
+  const handleDelete = (id) => {
+    const proceed = window.confirm("Are you sure you want to delete");
+    if (proceed) {
+      fetch(`http://localhost:5000/reviews/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Deleted successfully");
+            const remaining = reviews.filter((rvw) => rvw._id !== id);
+            setReviews(remaining);
+          }
+        });
+    }
+  };
+
   return (
     <div>
       <h2>You have {reviews.length} reviews</h2>
@@ -34,7 +53,11 @@ const Reviews = () => {
         </MDBTableHead>
         <MDBTableBody>
           {reviews.map((review) => (
-            <ReviewRow key={review._id} review={review}></ReviewRow>
+            <ReviewRow
+              key={review._id}
+              handleDelete={handleDelete}
+              review={review}
+            ></ReviewRow>
           ))}
         </MDBTableBody>
       </MDBTable>

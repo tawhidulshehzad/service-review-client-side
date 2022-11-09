@@ -7,7 +7,7 @@ import logo1 from "../../../assets/food-bar.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { providerLogin } = useContext(AuthContext);
+  const { providerLogin, user } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleGoogleSignIn = () => {
@@ -24,12 +24,23 @@ const Header = () => {
       <Link className=" fw-semibold text-decoration-none text-dark" to="/">
         Home
       </Link>
-      <Link
-        className=" fw-semibold text-decoration-none text-dark ms-3"
-        to="/login"
-      >
-        Login
-      </Link>
+      {user?.email ? (
+        <>
+          <Link
+            className=" fw-semibold text-decoration-none text-dark ms-3"
+            to="/reviews"
+          >
+            My Reviews
+          </Link>
+        </>
+      ) : (
+        <Link
+          className=" fw-semibold text-decoration-none text-dark ms-3"
+          to="/login"
+        >
+          Login
+        </Link>
+      )}
     </>
   );
 

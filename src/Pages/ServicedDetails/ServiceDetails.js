@@ -39,6 +39,7 @@ const ServiceDetails = () => {
         console.log(data);
         if (data.acknowledged) {
           alert("Review has taken");
+          window.location.reload(false);
           form.reset();
         }
       })
