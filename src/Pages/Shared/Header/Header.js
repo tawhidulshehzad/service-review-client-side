@@ -10,6 +10,10 @@ const Header = () => {
       <Link className=" fw-semibold text-decoration-none text-dark" to="/">
         Home
       </Link>
+      <Link className=" fw-semibold text-decoration-none text-dark ms-3" to="/login">
+        Login
+      </Link>
+      
     </>
   );
 
