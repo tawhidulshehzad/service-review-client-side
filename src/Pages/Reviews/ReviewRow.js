@@ -29,8 +29,8 @@ const ReviewRow = ({ review }) => {
       </td>
       <td>{price}</td>
       <td>
-        <MDBBtn color="link" rounded size="sm">
-          Edit
+        <MDBBtn rounded size="sm">
+          x
         </MDBBtn>
       </td>
     </tr>

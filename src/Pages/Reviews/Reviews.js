@@ -29,7 +29,7 @@ const Reviews = () => {
             <th scope="col">Review</th>
             <th scope="col">Service Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Delete</th>
           </tr>
         </MDBTableHead>
         <MDBTableBody>
