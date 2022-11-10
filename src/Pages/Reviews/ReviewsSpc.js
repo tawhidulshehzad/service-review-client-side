@@ -6,19 +6,21 @@ import useTitle from "../../hooks/useTitle";
 import ReviewRow from "./ReviewRow";
 
 const ReviewsSpc = ({ id }) => {
-  const { _id } = id;
+  console.log(id)
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   useTitle("Details");
+  
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`http://localhost:5000/reviews/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setReviews(data);
         console.log(data);
       })
-      .catch((error) => console.error(error));
+      .catch
+      ((error) => console.error(error));
   }, []);
 
   // useEffect(() => {

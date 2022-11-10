@@ -11,6 +11,7 @@ const ServiceDetails = () => {
   const { title, _id, img, description, price } = useLoaderData();
   const { user } = useContext(AuthContext);
 
+
   const handleReview = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -102,6 +103,7 @@ const ServiceDetails = () => {
         </div>
       </div>
       <ReviewsSpc id={_id} ></ReviewsSpc>
+      
     </div>
   );
 };
