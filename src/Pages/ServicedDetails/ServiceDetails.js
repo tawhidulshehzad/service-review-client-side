@@ -5,6 +5,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "../../Router/PrivateRoute/PrivateRoute";
 import Reviews from "../Reviews/Reviews";
+import ReviewsSpc from "../Reviews/ReviewsSpc";
 
 const ServiceDetails = () => {
   const { title, _id, img, description, price } = useLoaderData();
@@ -100,7 +101,7 @@ const ServiceDetails = () => {
           </form>
         </div>
       </div>
-      <Reviews></Reviews>
+      <ReviewsSpc id={_id} ></ReviewsSpc>
     </div>
   );
 };
