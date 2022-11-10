@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import PrivateRoute from "../../Router/PrivateRoute/PrivateRoute";
 import Reviews from "../Reviews/Reviews";
 
 const ServiceDetails = () => {

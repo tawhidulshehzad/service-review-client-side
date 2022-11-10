@@ -7,7 +7,7 @@ import logo1 from "../../../assets/food-bar.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { providerLogin, user } = useContext(AuthContext);
+  const { providerLogin, user, logOut } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleGoogleSignIn = () => {
@@ -19,10 +19,19 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
 
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((error) => console.error(error));
+  };
+
   const menuItems = (
     <>
       <Link className=" fw-semibold text-decoration-none text-dark" to="/">
         Home
+      </Link>
+      <Link className=" fw-semibold ms-3 text-decoration-none text-dark" to="/blog">
+          Blog
       </Link>
       {user?.email ? (
         <>
@@ -32,6 +41,18 @@ const Header = () => {
           >
             My Reviews
           </Link>
+          <Link
+            className=" fw-semibold text-decoration-none text-dark ms-3"
+            to="/addservices"
+          >
+            Add Services
+          </Link>
+          <button
+            onClick={handleLogOut}
+            className="border-0 bg-transparent fw-semibold text-decoration-none text-dark ms-3"
+          >
+            Sign Out
+          </button>
         </>
       ) : (
         <Link
@@ -61,9 +82,9 @@ const Header = () => {
             <Nav.Link>{menuItems}</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+            <Nav.Link href="#deets"></Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              
             </Nav.Link>
           </Nav>
           <MDBBtn onClick={handleGoogleSignIn} outline color="success">

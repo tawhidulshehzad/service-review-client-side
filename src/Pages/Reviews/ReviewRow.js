@@ -1,8 +1,8 @@
 import { MDBBadge, MDBBtn } from "mdb-react-ui-kit";
 import React from "react";
 
-const ReviewRow = ({ review, handleDelete }) => {
-  const { _id, name, email, url, message, serviceName, price } = review;
+const ReviewRow = ({ review, handleDelete, handleStatusUpdate }) => {
+  const { _id, name, email, url, message, serviceName, price, status } = review;
 
   return (
     <tr>
@@ -32,6 +32,11 @@ const ReviewRow = ({ review, handleDelete }) => {
       <td>
         <MDBBtn onClick={() => handleDelete(_id)} rounded size="sm">
           x
+        </MDBBtn>
+      </td>
+      <td>
+        <MDBBtn onClick={() => handleStatusUpdate(_id)} rounded size="sm">
+          {status ? status : "Edit"}
         </MDBBtn>
       </td>
     </tr>

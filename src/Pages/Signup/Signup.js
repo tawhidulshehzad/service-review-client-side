@@ -3,8 +3,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Signup = () => {
+  useTitle("Sign Up");
   const { createUser } = useContext(AuthContext);
   const handleSignUp = (event) => {
     event.preventDefault();
