@@ -1,5 +1,6 @@
 import { MDBBadge, MDBBtn } from "mdb-react-ui-kit";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ReviewRow = ({ review, handleDelete, handleStatusUpdate }) => {
   const { _id, name, email, url, message, serviceName, price, status } = review;
@@ -35,8 +36,13 @@ const ReviewRow = ({ review, handleDelete, handleStatusUpdate }) => {
         </MDBBtn>
       </td>
       <td>
-        <MDBBtn onClick={() => handleStatusUpdate(_id)} rounded size="sm">
-          {status ? status : "Edit"}
+        <MDBBtn rounded size="sm">
+          <Link
+            className="text-white text-decoration-none"
+            to={`/update-reviews/${_id}`}
+          >
+            Update
+          </Link>
         </MDBBtn>
       </td>
     </tr>

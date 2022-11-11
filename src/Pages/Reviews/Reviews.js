@@ -17,7 +17,11 @@ const Reviews = () => {
   useTitle("My Review");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("food-token")}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => setReviews(data));
   }, [user?.email]);

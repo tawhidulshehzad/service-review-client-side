@@ -1,7 +1,14 @@
 import { MDBTextArea } from "mdb-react-ui-kit";
 import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
-import { Link, useLoaderData } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import PrivateRoute from "../../Router/PrivateRoute/PrivateRoute";
 import Reviews from "../Reviews/Reviews";
@@ -10,7 +17,8 @@ import ReviewsSpc from "../Reviews/ReviewsSpc";
 const ServiceDetails = () => {
   const { title, _id, img, description, price } = useLoaderData();
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleReview = (event) => {
     event.preventDefault();
@@ -28,6 +36,7 @@ const ServiceDetails = () => {
       email,
       message,
       price,
+      time: Date(),
     };
 
     fetch("http://localhost:5000/reviews", {
@@ -41,12 +50,59 @@ const ServiceDetails = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert("Review has taken");
+          toast("Review has taken");
           window.location.reload(false);
           form.reset();
         }
       })
       .catch((error) => console.error(error));
+  };
+
+  // const handleReview = (event) => {
+  //   if (user?.email) {
+  //     event.preventDefault();
+  //     const form = event.target;
+  //     const name = form.name.value;
+  //     const email = user?.email || "unregistered";
+  //     const url = form.url.value;
+  //     const message = form.message.value;
+
+  //     const reviews = {
+  //       service: _id,
+  //       serviceName: title,
+  //       name,
+  //       url,
+  //       email,
+  //       message,
+  //       price,
+  //       time: Date(),
+  //     };
+
+  //     fetch("http://localhost:5000/reviews", {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify(reviews),
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         if (data.acknowledged) {
+  //           alert("Review has taken");
+  //           window.location.reload(false);
+  //           form.reset();
+  //         }
+  //       })
+  //       .catch((error) => console.error(error));
+  //   } else {
+  //     toast("please login first");
+  //     navigate("/login");
+  //   }
+  // };
+
+  const handleToast = () => {
+    toast("Login First");
   };
 
   return (
@@ -94,16 +150,27 @@ const ServiceDetails = () => {
               rows={4}
             />
             {/* btn */}
-            <input
-              className="btn btn-primary"
-              type="submit"
-              value="Submit your reviews"
-            />
+            {user?.email ? (
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Submit your reviews"
+              />
+            ) : (
+              <Link
+                to="/login"
+                onClick={handleToast}
+                state={{ from: location }}
+                replace
+                className="btn btn-primary"
+              >
+                Submit your reviews
+              </Link>
+            )}
           </form>
         </div>
       </div>
-      <ReviewsSpc id={_id} ></ReviewsSpc>
-      
+      <ReviewsSpc id={_id}></ReviewsSpc>
     </div>
   );
 };
