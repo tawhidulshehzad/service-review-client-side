@@ -12,7 +12,7 @@ const ReviewUpdate = () => {
   const handleUpdate = () => {
     console.log(reviewText);
 
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
+    fetch(`https://cloud-food-server.vercel.app/reviews/${review._id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ reviewText }),

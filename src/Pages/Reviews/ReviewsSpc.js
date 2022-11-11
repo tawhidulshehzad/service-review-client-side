@@ -13,7 +13,7 @@ const ReviewsSpc = ({ id }) => {
   
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${id}`)
+    fetch(`https://cloud-food-server.vercel.app/reviews/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setReviews(data);
@@ -24,7 +24,7 @@ const ReviewsSpc = ({ id }) => {
   }, []);
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/services")
+  //   fetch("https://cloud-food-server.vercel.app/services")
   //     .then((res) => res.json())
   //     .then((data) => setServices(data));
   // }, []);
@@ -33,7 +33,7 @@ const ReviewsSpc = ({ id }) => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure you want to delete");
     if (proceed) {
-      fetch(`http://localhost:5000/reviews/${id}`, {
+      fetch(`https://cloud-food-server.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -50,7 +50,7 @@ const ReviewsSpc = ({ id }) => {
   };
 
   const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://cloud-food-server.vercel.app/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

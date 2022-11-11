@@ -22,8 +22,9 @@ const Addservices = () => {
       img,
       price,
       description,
+      time: Date(),
     };
-    fetch("http://localhost:5000/services", {
+    fetch("https://cloud-food-server.vercel.app/services", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

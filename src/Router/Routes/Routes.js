@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/update-reviews/:id",
         element: <ReviewUpdate></ReviewUpdate>,
-        loader: ({params}) => fetch(`http://localhost:5000/update-reviews/${params.id}`)
+        loader: ({params}) => fetch(`https://cloud-food-server.vercel.app/update-reviews/${params.id}`)
       },
       {
         path: "/allservices",
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         path: "/servicedetails/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://cloud-food-server.vercel.app/services/${params.id}`),
       },
       {
         path: "/reviews",
